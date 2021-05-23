@@ -1,0 +1,42 @@
+<html xmlns:myapp="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>
+            Excel file upload and processing : Django Example : ThePythonDjango.Com
+        </title>
+    </head>
+    <body style="margin-top: 5px;">
+        <h2 style="text-align: center;"> Find longitude & latitude </h2>
+
+        <div style="text-align:center;">
+                     {% if messages %}
+        {% for message in messages %}
+            <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+            <form action="{% url 'excelUpload:excel' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file"
+                   title="Upload excel file"
+                   name="excel_file"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required">
+
+                <p>
+                <input type="submit"
+                   value="Upload"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
+
+        <p></p>
+        <hr>
+
+        {% for row in excel_data %}
+            {% for cell in row %}
+                {{ cell }}&nbsp;&nbsp;
+            {% endfor %}
+            <br>
+        {% endfor %}
+                        </div>
+
+    </body>
+</html>
