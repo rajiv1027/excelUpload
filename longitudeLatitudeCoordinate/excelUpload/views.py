@@ -20,7 +20,7 @@ def read_excel(fileHandle):
     excel_data = dataset.load(fileHandle.read())
     for data in excel_data:
         address = data[0]
-        #Get location by address
+        # Get location by address
         location = geolocator.geocode(address)
         longitude = location.longitude
         latitude = location.latitude
